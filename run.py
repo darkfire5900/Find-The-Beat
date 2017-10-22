@@ -4,6 +4,8 @@ import feather
 
 s = Spotify()
 
+# USAGE: insert a spotify username, insert playlist URI (Right click on playlist, share URI) owned by username
+# Playlist must be set to public
 USERNAME = ''
 PLAYLIST_ID = ''
 
