@@ -1,13 +1,16 @@
 from spotify import Spotify
+import configparser
 import pandas as pd
 import feather
 
 s = Spotify()
 
-# USAGE: insert a spotify username, insert playlist URI (Right click on playlist, share URI) owned by username
-# Playlist must be set to public
-USERNAME = ''
-PLAYLIST_ID = ''
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+USERNAME = config.get('required', 'username')
+PLAYLIST_ID = config.get('required', 'playlist_uri')
+
 
 track_ids, artist_ids = s.return_track_artist_ids(USERNAME, PLAYLIST_ID)
 
@@ -20,7 +23,6 @@ my_track_analysis = s.return_track_analysis(track_ids)
 
 df = pd.DataFrame(other_track_analysis)
 df2 = pd.DataFrame(my_track_analysis)
-print(df.head)
 
 
 feather.write_dataframe(df, 'dat/other_tracks.feather')
