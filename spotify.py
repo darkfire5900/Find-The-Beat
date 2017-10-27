@@ -87,5 +87,3 @@ class Spotify():
             for item in audio_features['audio_features']:
                 track_analysis.append(pd.Series(item))
         return track_analysis
-
-    #def remove_none(self, lst):
